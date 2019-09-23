@@ -122,6 +122,7 @@ button {
   border-color: transparent;
   color: rgb(var(--colorForeground));
   font: var(--fontTitle);
+  letter-spacing: inherit;
   pointer-events: none;
   position: relative;
   text-align: center;
@@ -137,14 +138,17 @@ button {
   content: attr(data-text);
   display: block;
   font: var(--fontTitle);
+  mix-blend-mode: color-dodge;
+  opacity: 1;
   position: absolute;
   top: 50%;
   left: 50%;
   text-transform: uppercase;
-  z-index: 0;
-  mix-blend-mode: color-dodge;
-  transition: transform var(--transitionDuration);
+  transition: opacity var(--transitionDuration),
+    transform var(--transitionDuration);
   transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 0;
 }
 
 #pageTitle:before {
@@ -154,7 +158,11 @@ button {
   color: #ff0d47;
 }
 #pageTitle:hover {
-  transform: scale(1.5);
+  transform: scale(1.5) rotate(2deg);
+}
+#pageTitle:hover:before,
+#pageTitle:hover:after {
+  opacity: 1;
 }
 #pageTitle:hover:before {
   transform: translate(-50.5%, -50.5%) rotate(-0.5deg) skew(-3deg);
@@ -351,7 +359,7 @@ button {
 }
 
 .colorpicker__preview {
-  border: 2px solid #fff;
+  border: 2px solid rgb(var(--colorForeground));
   border-radius: 1rem;
   cursor: pointer;
   height: 1.4rem;
