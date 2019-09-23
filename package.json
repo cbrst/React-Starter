@@ -5,7 +5,6 @@
   "dependencies": {
     "material-design-icons-iconfont": "^5.0.1",
     "react": "^16.9.0",
-    "react-cookie": "^4.0.1",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
   },
