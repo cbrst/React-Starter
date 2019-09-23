@@ -1,12 +1,10 @@
 :root {
   --borderRadius: 0.25rem;
 
-  --colorBackground: #333;
-  --colorForeground: #aaa;
-  --colorLinkHover: #fff;
+  --colorBackground: 51, 51, 51;
+  --colorForeground: 170, 170, 170;
 
   --colorBlockBackground: rgba(255, 255, 255, 0.02);
-  --colorBlockForeground: #726868;
   --colorBlockShadow: rgba(0, 0, 0, 0.1);
 
   --colorPopupBackground: #f6f6f6;
@@ -23,10 +21,10 @@
   --transitionDuration: 0.3s;
 }
 
-html,
-body {
-  background: var(--colorBackground);
-  color: var(--colorForeground);
+html {
+  /* body { */
+  background: rgb(var(--colorBackground));
+  color: rgb(var(--colorForeground));
   font: var(--fontBody);
   letter-spacing: 0.05em;
   display: flex;
@@ -78,9 +76,9 @@ button:hover {
 input,
 button {
   background: transparent;
-  border: 2px solid var(--colorForeground);
+  border: 2px solid rgb(var(--colorForeground));
   border-radius: var(--borderRadius);
-  color: var(--colorForeground);
+  color: rgb(var(--colorForeground));
   font: inherit;
   padding: 0.5em;
   transition: border-color var(--transitionDuration),
@@ -113,12 +111,13 @@ button {
   display: flex;
   padding: 0 1rem;
   position: relative;
+  transition: transform var(--transitionDuration);
 }
 
 #pageTitle input {
   background: transparent;
   border-color: transparent;
-  color: inherit;
+  color: rgb(var(--colorForeground));
   font: var(--fontTitle);
   pointer-events: none;
   position: relative;
@@ -127,7 +126,7 @@ button {
   transition: background var(--transitionDuration),
     box-shadow var(--transitionDuration), color var(--transitionDuration);
   z-index: 1;
-  opacity: 0;
+  opacity: 1;
 }
 
 #pageTitle:before,
@@ -151,17 +150,19 @@ button {
 #pageTitle:after {
   color: #ff0d47;
 }
-
+#pageTitle:hover {
+  transform: scale(1.5);
+}
 #pageTitle:hover:before {
-  transform: translate(-50.5%, -50.5%) rotate(-0.5deg) skew(-3deg) scale(1.5);
+  transform: translate(-50.5%, -50.5%) rotate(-0.5deg) skew(-3deg);
 }
 
 #pageTitle:hover:after {
-  transform: translate(-49.5%, -49.5%) rotate(0.5deg) skew(3deg) scale(1.5);
+  transform: translate(-49.5%, -49.5%) rotate(0.5deg) skew(3deg);
 }
 
 .--editable #pageTitle input {
-  border-color: var(--colorForeground);
+  border-color: rgb(var(--colorForeground));
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.2);
   pointer-events: all;
   opacity: 1;
@@ -202,7 +203,7 @@ button {
   background: var(--colorBlockBackground);
   border-radius: var(--borderRadius);
   box-shadow: 0 5px 10px var(--colorBlockShadow);
-  color: var(--colorBlockForeground);
+  color: rgba(var(--colorForeground), 0.8);
   margin: 1rem;
   min-width: 10vw;
   padding: 1rem;
@@ -236,7 +237,7 @@ button {
 
 .linklist a:before {
   content: attr(data-label);
-  color: var(--colorLinkHover);
+  color: rgb(var(--colorForeground));
   position: absolute;
   max-width: 0;
   overflow: hidden;
@@ -310,17 +311,80 @@ button {
 }
 
 /**
+ * Settings Bar
+ */
+
+.settingsBar {
+  bottom: 0;
+  border-top: 1px solid rgb(var(--colorForeground));
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  padding: 0.5rem 0;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: opacity var(--transitionDuration);
+}
+
+.--editable .settingsBar {
+  pointer-events: initial;
+  opacity: 1;
+}
+
+.settingsBar > * + * {
+  margin-left: 2rem;
+}
+
+/**
+ * Colorpicker
+ */
+
+.colorpicker {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.colorpicker__preview {
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  cursor: pointer;
+  height: 1.4rem;
+  margin-right: 0.5rem;
+  width: 1.4rem;
+}
+
+.colorpicker .sketch-picker {
+  position: absolute;
+  bottom: 110%;
+  display: none;
+}
+
+.colorpicker.--editable .sketch-picker {
+  display: block;
+}
+
+.colorpicker.--colorBackground .colorpicker__preview {
+  background-color: rgb(var(--colorBackground));
+}
+.colorpicker.--colorForeground .colorpicker__preview {
+  background-color: rgb(var(--colorForeground));
+}
+
+/**
  * Edit button
  */
 
 #editButton {
   background: transparent;
   border: none;
-  color: var(--colorForeground);
+  color: rgb(var(--colorForeground));
   cursor: pointer;
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 0rem;
+  right: 0rem;
   opacity: 0.3;
   transition: opacity var(--transitionDuration);
 }
