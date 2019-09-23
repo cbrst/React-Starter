@@ -3,13 +3,20 @@
 
   --colorBackground: #333;
   --colorForeground: #aaa;
+  --colorLinkHover: #fff;
 
-  --colorBlockBackground: rgba(255, 255, 255, 0.8);
-  --colorBlockForeground: #333;
+  --colorBlockBackground: rgba(255, 255, 255, 0.02);
+  --colorBlockForeground: #726868;
+  --colorBlockShadow: rgba(0, 0, 0, 0.1);
 
   --colorPopupBackground: #f6f6f6;
 
   --colorHighlight: palevioletred;
+  --colorHighlight: linear-gradient(
+    to right,
+    rgb(216, 112, 147),
+    rgb(218, 116, 69)
+  );
 
   --fontBody: 500 18px "Barlow Semi Condensed", sans-serif;
   --fontTitle: 900 1.8rem "Barlow", sans-serif;
@@ -195,7 +202,7 @@ button {
 .linklist {
   background: var(--colorBlockBackground);
   border-radius: var(--borderRadius);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px var(--colorBlockShadow);
   color: var(--colorBlockForeground);
   margin: 1rem;
   min-width: 10vw;
@@ -228,6 +235,19 @@ button {
   text-decoration: none;
 }
 
+.linklist a:before {
+  content: attr(data-label);
+  color: var(--colorLinkHover);
+  position: absolute;
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width var(--transitionDuration);
+}
+
+.linklist a:hover:before {
+  max-width: 100%;
+}
+
 .linklist a:after {
   background: var(--colorHighlight);
   content: "";
@@ -236,7 +256,7 @@ button {
   height: 2px;
   left: 0;
   bottom: 0;
-  transition: max-width var(--transitionDuration);
+  transition: max-width calc(var(--transitionDuration) * 1.5);
 }
 
 .linklist a:hover:after {

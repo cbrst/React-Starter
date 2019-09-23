@@ -47,7 +47,9 @@ class LinkListList extends React.Component {
               >
                 <i className="material-icons">delete</i>
               </button>
-              <a href={link.url}>{link.title}</a>
+              <a href={link.url} data-label={link.title}>
+                {link.title}
+              </a>
             </li>
           ))}
         </ul>
