@@ -9,10 +9,13 @@
 
   --colorPopupBackground: #f6f6f6;
 
+  --colorHighlightPrimary: 216, 112, 147;
+  --colorHighlightSecondary: 218, 116, 69;
+
   --colorHighlight: linear-gradient(
     to right,
-    rgb(216, 112, 147),
-    rgb(218, 116, 69)
+    rgb(var(--colorHighlightPrimary)),
+    rgb(var(--colorHighlightSecondary))
   );
 
   --fontBody: 500 18px "Barlow Semi Condensed", sans-serif;
@@ -364,13 +367,6 @@ button {
 
 .colorpicker.--editable .sketch-picker {
   display: block;
-}
-
-.colorpicker.--colorBackground .colorpicker__preview {
-  background-color: rgb(var(--colorBackground));
-}
-.colorpicker.--colorForeground .colorpicker__preview {
-  background-color: rgb(var(--colorForeground));
 }
 
 /**

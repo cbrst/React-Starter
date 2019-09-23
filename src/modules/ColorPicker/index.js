@@ -58,7 +58,11 @@ class ColorPicker extends React.Component {
           onChangeComplete={this.handleChangeComplete}
         />
 
-        <div className="colorpicker__preview" onClick={this.handleClick} />
+        <div
+          className="colorpicker__preview"
+          onClick={this.handleClick}
+          style={{ backgroundColor: "rgb(var(" + this.props.property + "))" }}
+        />
         {this.props.label}
       </div>
     );

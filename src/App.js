@@ -14,6 +14,14 @@ const App = () => {
       <div className="settingsBar">
         <ColorPicker property="--colorBackground" label="Background" />
         <ColorPicker property="--colorForeground" label="Foreground" />
+        <ColorPicker
+          property="--colorHighlightPrimary"
+          label="Primary Highlight"
+        />
+        <ColorPicker
+          property="--colorHighlightSecondary"
+          label="Secondary Highlight"
+        />
       </div>
 
       <button id="editButton" onClick={event => setEditable(!editable)}>
